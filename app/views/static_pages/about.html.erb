@@ -1,2 +1,11 @@
-<h1>StaticPages#about</h1>
-<p>Find me in app/views/static_pages/about.html.erb</p>
+<% provide(:title, 'About') %>
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>The Hope Channel | <%= yield(:title) %></title>
+	</head>
+	<body>
+		<h1>About</h1>
+		<p>And he said, “Jesus, remember me when you come into your kingdom.” And he said to him, “Truly, I say to you, today you will be with me in Paradise.”</p>
+	</body>
+</html>
