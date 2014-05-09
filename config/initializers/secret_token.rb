@@ -9,4 +9,19 @@
 
 # Make sure your secret_key_base is kept private
 # if you're sharing your code publicly.
-TheHopeChannel::Application.config.secret_key_base = 'af83de91f87275d3be5d9fedc9daa5caa344a8f489bb53c59373791830e19c043c4951494b8d83fda577d61039599686f893cbadb0368f423146708b6df39b6a'
+require 'securerandom'
+
+def secure_token
+  token_file = Rails.root.join('.secret')
+  if File.exist?(token_file)
+    # Use the existing token.
+    File.read(token_file).chomp
+  else
+    # Generate a new token and store it in token_file.
+    token = SecureRandom.hex(64)
+    File.write(token_file, token)
+    token
+  end
+end
+
+TheHopeChannel::Application.config.secret_key_base = secure_token
